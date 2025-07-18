@@ -8,16 +8,23 @@
 <body>
     <h1>Tic-Tac-Toe</h1>
     <div id="game-status">Player X's turn</div>
-    <div id="game-board">
-        <div class="cell" data-cell="0" data-cell-index="0"></div>
-        <div class="cell" data-cell="1" data-cell-index="1"></div>
-        <div class="cell" data-cell="2" data-cell-index="2"></div>
-        <div class="cell" data-cell="3" data-cell-index="3"></div>
-        <div class="cell" data-cell="4" data-cell-index="4"></div>
-        <div class="cell" data-cell="5" data-cell-index="5"></div>
-        <div class="cell" data-cell="6" data-cell-index="6"></div>
-        <div class="cell" data-cell="7" data-cell-index="7"></div>
-        <div class="cell" data-cell="8" data-cell-index="8"></div>
+    <div style="display: flex; align-items: flex-start; justify-content: center; gap: 32px;">
+        <div id="game-board">
+            <div class="cell" data-cell="0" data-cell-index="0"></div>
+            <div class="cell" data-cell="1" data-cell-index="1"></div>
+            <div class="cell" data-cell="2" data-cell-index="2"></div>
+            <div class="cell" data-cell="3" data-cell-index="3"></div>
+            <div class="cell" data-cell="4" data-cell-index="4"></div>
+            <div class="cell" data-cell="5" data-cell-index="5"></div>
+            <div class="cell" data-cell="6" data-cell-index="6"></div>
+            <div class="cell" data-cell="7" data-cell-index="7"></div>
+            <div class="cell" data-cell="8" data-cell-index="8"></div>
+        </div>
+        <div id="scoreboard">
+            <div class="score-x">Player X: <span id="score-x">0</span></div>
+            <div class="score-o">Player O: <span id="score-o">0</span></div>
+            <button id="reset-scores-button" style="margin-top: 18px;">Reset Scores</button>
+        </div>
     </div>
     <button id="reset-button">Reset</button>
     <script src="script.js"></script>

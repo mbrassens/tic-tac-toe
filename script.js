@@ -1,10 +1,15 @@
 let board = Array(9).fill('');
 let currentPlayer = 'X';
 let gameActive = true;
+let scoreX = 0;
+let scoreO = 0;
 
 const gameBoard = document.getElementById('game-board');
 const gameStatus = document.getElementById('game-status');
 const resetButton = document.getElementById('reset-button');
+const scoreXElem = document.getElementById('score-x');
+const scoreOElem = document.getElementById('score-o');
+const resetScoresButton = document.getElementById('reset-scores-button');
 
 function handleCellClick(cell, index) {
     if (!gameActive || board[index] !== '') {
@@ -13,9 +18,22 @@ function handleCellClick(cell, index) {
     board[index] = currentPlayer;
     cell.textContent = currentPlayer;
 
-    if (checkWin()) {
+    const winCombo = checkWin();
+    if (winCombo) {
         gameStatus.textContent = `Player ${currentPlayer} wins!`;
         gameActive = false;
+        // Highlight winning cells
+        winCombo.forEach(i => {
+            cells[i].classList.add('winner');
+        });
+        // Update score
+        if (currentPlayer === 'X') {
+            scoreX++;
+            scoreXElem.textContent = scoreX;
+        } else {
+            scoreO++;
+            scoreOElem.textContent = scoreO;
+        }
     } else if (checkDraw()) {
         gameStatus.textContent = "It's a draw!";
     } else {
@@ -42,10 +60,10 @@ function checkWin() {
             board[a] === board[b] &&
             board[a] === board[c]
         ) {
-            return true;
+            return combo; // Return the winning combo
         }
     }
-    return false;
+    return null;
 }
 
 function checkDraw() {
@@ -62,6 +80,12 @@ cells.forEach(cell => {
 })
 
 resetButton.addEventListener('click', resetGame);
+resetScoresButton.addEventListener('click', function() {
+    scoreX = 0;
+    scoreO = 0;
+    scoreXElem.textContent = scoreX;
+    scoreOElem.textContent = scoreO;
+});
 
 function resetGame() {
     board = Array(9).fill('');
@@ -70,6 +94,7 @@ function resetGame() {
     gameStatus.textContent = 'Player X\'s turn';
     cells.forEach(cell => {
         cell.textContent = '';
+        cell.classList.remove('winner'); // Remove winner highlight
     });
 }
 ;
